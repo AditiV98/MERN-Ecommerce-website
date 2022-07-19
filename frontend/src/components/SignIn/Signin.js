@@ -1,18 +1,12 @@
 // import React from "react";
 import React, { Fragment, useState, useEffect } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
+
 import { Link } from "react-router-dom";
-import axios from "axios";
-import Container from "@mui/material/Container";
+
 import "./login.css";
 import { login, clearErrors } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
 
 const Signin = ({ history, location }) => {
   const dispatch = useDispatch();
@@ -27,39 +21,39 @@ const Signin = ({ history, location }) => {
 
   const loginSubmit = async (e) => {
     e.preventDefault();
-    try {
-      dispatch(login(loginEmail, loginPassword));
-      //   localStorage.setItem("firstLogin", true);
-      if (isAuthenticated === true) {
-        // // await axios.get("/api/me");
-        // // window.location.href = "/about";
-        navigate.push("/home");
-        //
-      }
-      if (isAuthenticated === false) {
-        alert("Invalid Email or Password");
-      }
-      //   window.location.href = "/";
-      // console.log(error);
-      // e.preventDefault();
-      // await axios.post("http://localhost:5500/api/register", newUser);
-    } catch (error) {
-      alert(error.response.data.msg);
-    }
+    // try {
+    dispatch(login(loginEmail, loginPassword));
+    //   localStorage.setItem("firstLogin", true);
+    // if (isAuthenticated === true) {
+    // // await axios.get("/api/me");
+    // // window.location.href = "/about";
+    // navigate("/home");
+    //
+    // }
+    // if (isAuthenticated === false) {
+    //   alert("Invalid Email or Password");
+    // }
+    //   window.location.href = "/";
+    // console.log(error);
+    // e.preventDefault();
+    //   // await axios.post("http://localhost:5500/api/register", newUser);
+    // } catch (error) {
+    //   alert(error.response.data.msg);
+    // }
   };
 
   // const redirect = location.search ? location.search.split("=")[1] : "/account";
 
-  // useEffect(() => {
-  //   if (error) {
-  //     alert.error(error);
+  useEffect(() => {
+    if (error) {
+      alert(error);
 
-  //     dispatch(clearErrors());
-  //   }
-  //   // if (isAuthenticated) {
-  //   //   history.push("/home");
-  //   // }
-  // }, [dispatch, error, alert]);
+      dispatch(clearErrors());
+    }
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [dispatch, error, alert, isAuthenticated]);
 
   return (
     <div className="login-page">

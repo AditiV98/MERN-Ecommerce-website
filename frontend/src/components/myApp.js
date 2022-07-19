@@ -10,13 +10,15 @@ import Signin from "./SignIn/Signin";
 import Cart from "./Cart";
 import ProductDetails from "./ProductDetails";
 import Account from "./account";
+import UpdateProfile from "./UpdateProfile/updateProfile";
+import UpdatePassword from "./UpdatePassword/UpdatePassword";
 import store from "../store";
 import { useEffect } from "react";
 import { loadUser } from "../actions/userAction";
 import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
 function MyApp() {
-  // const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -38,7 +40,21 @@ function MyApp() {
           <Route path="cart" element={<Cart></Cart>}></Route>
           <Route path="signup" element={<SignUp></SignUp>}></Route>
           <Route path="login" element={<Signin></Signin>}></Route>
-          <Route path="account" element={<Account></Account>}></Route>
+          {isAuthenticated && (
+            <Route path="account" element={<Account></Account>}></Route>
+          )}
+          {isAuthenticated && (
+            <Route
+              path="update-profile"
+              element={<UpdateProfile></UpdateProfile>}
+            ></Route>
+          )}
+          {isAuthenticated && (
+            <Route
+              path="update-password"
+              element={<UpdatePassword></UpdatePassword>}
+            ></Route>
+          )}
         </Routes>
       </BrowserRouter>
     </div>

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
 import { useAlert } from "react-alert";
 const UserOptions = ({ user }) => {
-  const [open, setOpen] = useState(false);
+  //   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   //   const alert = useAlert();
   const dispatch = useDispatch();
@@ -29,30 +29,31 @@ const UserOptions = ({ user }) => {
     });
   }
   function dashboard() {
-    navigate.push("/admin/dashboard");
+    navigate("/admin/dashboard");
   }
 
   function orders() {
-    navigate.push("/orders");
+    navigate("/orders");
   }
   function account() {
-    navigate.push("/account");
+    navigate("/account");
   }
   function cart() {
-    navigate.push("/cart");
+    navigate("/cart");
   }
   function logoutUser() {
     dispatch(logout());
     alert("Logout successfully");
+    navigate("/home");
   }
 
   return (
     <Fragment>
       <SpeedDial
         ariaLabel="SpeedDial basic example"
-        onClose={() => setOpen(false)}
-        onOpen={() => setOpen(true)}
-        open={open}
+        // onClose={() => setOpen(false)}
+        // onOpen={() => setOpen(true)}
+        // open={open}
         direction="left"
         icon={<SpeedDialIcon />}
       >
