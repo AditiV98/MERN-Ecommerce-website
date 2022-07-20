@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { register, clearErrors } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { error, isAuthenticated, loading } = useSelector(
     (state) => state.user
   );
@@ -21,24 +23,33 @@ function SignUp() {
 
   const registerSubmit = async (e) => {
     e.preventDefault();
-    try {
-      dispatch(register(user));
-      // await axios.post("/api/register", { ...user });
+    // try {
+    dispatch(register(user));
+    // await axios.post("/api/register", { ...user });
 
-      // localStorage.setItem("firstLogin", true);
+    // localStorage.setItem("firstLogin", true);
 
-      // window.location.href = "/";
-      if (isAuthenticated === true) {
-        // alert("User Registered");
-      }
-      if (isAuthenticated === false) {
-        alert("Invalid");
-      }
-    } catch (err) {
-      alert(err.response.data.msg);
-    }
+    // window.location.href = "/";
+    //   if (isAuthenticated === true) {
+    //     // alert("User Registered");
+    //   }
+    //   if (isAuthenticated === false) {
+    //     alert("Invalid");
+    //   }
+    // } catch (err) {
+    //   alert(err.response.data.msg);
+    // }
   };
+  useEffect(() => {
+    if (error) {
+      alert(error);
 
+      dispatch(clearErrors());
+    }
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [dispatch, error, alert, isAuthenticated]);
   return (
     <div className="login-page">
       <form onSubmit={registerSubmit}>
