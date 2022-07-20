@@ -2,13 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
-  cartreducer,
   productsReducer,
   selectedProductsReducer,
 } from "./reducers/productReducer";
 import {
   allUsersReducer,
-  forgotPasswordReducer,
   profileReducer,
   userDetailsReducer,
   userReducer,
@@ -26,10 +24,10 @@ import {
 const reducer = combineReducers({
   allProducts: productsReducer,
   product: selectedProductsReducer,
-  cartItem: cartreducer,
+  // cartItem: cartreducer,
   user: userReducer,
   profile: profileReducer,
-  forgotPassword: forgotPasswordReducer,
+  // forgotPassword: forgotPasswordReducer,
   cart: cartReducer,
   newOrder: newOrderReducer,
   myOrders: myOrdersReducer,
@@ -46,9 +44,9 @@ let initialState = {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
-    shippingInfo: localStorage.getItem("shippingInfo")
-      ? JSON.parse(localStorage.getItem("shippingInfo"))
-      : {},
+    // shippingInfo: localStorage.getItem("shippingInfo")
+    //   ? JSON.parse(localStorage.getItem("shippingInfo"))
+    //   : {},
   },
 };
 

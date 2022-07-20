@@ -24,56 +24,57 @@ export const selectedProductsReducer = (state = {}, { type, payload }) => {
   }
 };
 
-const INIT_STATE = {
-  carts: [],
-};
+// const INIT_STATE = {
+//   carts: [],
+// };
 
-export const cartreducer = (state = INIT_STATE, { type, payload }) => {
-  switch (type) {
-    case ActionTypes.ADD_TO_CART:
-      const itemIndex = state.carts.findIndex((item) => item.id === payload.id);
-      if (itemIndex >= 0) {
-        state.carts[itemIndex].qnty += 1;
-        return {
-          ...state,
-          carts: [...state.carts],
-        };
-      } else {
-        const temp = { ...payload, qnty: 1 };
-        return {
-          ...state,
-          carts: [...state.carts, temp],
-        };
-      }
-    // return {
-    //   ...state,
-    //   carts: [...state.carts, payload],
-    // };
-    case ActionTypes.REMOVE_FROM_CART:
-      return {
-        ...state,
-        carts: state.carts.filter((item) => item.id !== payload.id),
-      };
+// export const cartreducer = (state = INIT_STATE, { type, payload }) => {
+//   switch (type) {
+//     case ActionTypes.ADD_TO_CART:
+//       //if item is already present in cart
+//       const itemIndex = state.carts.findIndex((item) => item.id === payload.id);
+//       if (itemIndex >= 0) {
+//         state.carts[itemIndex].qnty += 1;
+//         return {
+//           ...state,
+//           carts: [...state.carts],
+//         };
+//       } else {
+//         const temp = { ...payload, qnty: 1 };
+//         return {
+//           ...state,
+//           carts: [...state.carts, temp],
+//         };
+//       }
+//     // return {
+//     //   ...state,
+//     //   carts: [...state.carts, payload],
+//     // };
+//     case ActionTypes.REMOVE_FROM_CART:
+//       return {
+//         ...state,
+//         carts: state.carts.filter((item) => item.id !== payload.id),
+//       };
+// //decrease quantity
+//     case ActionTypes.REMOVE_ONE:
+//       const itemIndex_dec = state.carts.findIndex(
+//         (item) => item.id === payload.id
+//       );
 
-    case ActionTypes.REMOVE_ONE:
-      const itemIndex_dec = state.carts.findIndex(
-        (item) => item.id === payload.id
-      );
-
-      if (state.carts[itemIndex_dec].qnty >= 1) {
-        const dltItems = (state.carts[itemIndex_dec].qnty -= 1);
-        console.log([...state.carts, dltItems]);
-        return {
-          ...state,
-          carts: [...state.carts],
-        };
-      } else if (state.carts[itemIndex_dec].qnty === 1) {
-        return {
-          ...state,
-          carts: state.carts.filter((item) => item.id !== payload.id),
-        };
-      }
-    default:
-      return state;
-  }
-};
+//       if (state.carts[itemIndex_dec].qnty >= 1) {
+//         const dltItems = (state.carts[itemIndex_dec].qnty -= 1);
+//         console.log([...state.carts, dltItems]);
+//         return {
+//           ...state,
+//           carts: [...state.carts],
+//         };
+//       } else if (state.carts[itemIndex_dec].qnty === 1) {
+//         return {
+//           ...state,
+//           carts: state.carts.filter((item) => item.id !== payload.id),
+//         };
+//       }
+//     default:
+//       return state;
+//   }
+// };

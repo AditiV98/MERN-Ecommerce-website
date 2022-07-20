@@ -3,15 +3,18 @@ import axios from "axios";
 
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../actions/cartAction";
 import {
   selectedProduct,
   removeSelectedProduct,
-  addToCart,
 } from "../actions/productAction";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const { productId } = useParams();
+  // const navigate = useNavigate();
+
   let product = useSelector((state) => state.product);
   const { _id, image, title, price, category, description } = product;
   const dispatch = useDispatch();
@@ -22,8 +25,9 @@ const ProductDetails = () => {
     dispatch(selectedProduct(response.data));
   };
   const send = (e) => {
-    // console.log(e);
     dispatch(addToCart(e));
+    alert("Product added to cart");
+    // navigate("/cart");
   };
   useEffect(() => {
     if (productId && productId !== "") fetchProductDetail(productId);

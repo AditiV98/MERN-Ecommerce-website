@@ -8,7 +8,7 @@ import { login, clearErrors } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Signin = ({ history, location }) => {
+const Signin = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();

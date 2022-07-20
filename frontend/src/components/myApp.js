@@ -7,7 +7,7 @@ import About from "./About/About";
 import Contact from "./Contact/Contact";
 import SignUp from "./SignUp/SignUp";
 import Signin from "./SignIn/Signin";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 import ProductDetails from "./ProductDetails";
 import Account from "./account";
 import UpdateProfile from "./UpdateProfile/updateProfile";
@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { loadUser } from "../actions/userAction";
 import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
+
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   useEffect(() => {
