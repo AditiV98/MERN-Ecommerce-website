@@ -15,7 +15,10 @@ export default function Header() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        //  style={{ background: "#212121" }}
+      >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link
@@ -52,11 +55,20 @@ export default function Header() {
               About
             </Link>
           </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
-            <Link to="cart" style={{ textDecoration: "none", color: "white" }}>
-              Cart
-            </Link>
-          </Typography>
+          {isAuthenticated ? (
+            <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+              <Link
+                to="cart"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <IconButton size="large" aria-label="search" color="inherit">
+                  <AddShoppingCartIcon />
+                </IconButton>
+              </Link>
+            </Typography>
+          ) : (
+            <>{/* <h1>Please login</h1> */}</>
+          )}
           <IconButton size="large" aria-label="search" color="inherit">
             <SearchIcon />
           </IconButton>
@@ -68,14 +80,14 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+              {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
                 <Link
                   to="signup"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   SignUp
                 </Link>
-              </Typography>
+              </Typography> */}
               <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
                 <Link
                   to="login"

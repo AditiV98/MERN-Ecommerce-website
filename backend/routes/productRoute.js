@@ -19,7 +19,7 @@ router
 
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct);
 
-router.route("/product/new/:id").get(getProduct);
+router.route("/product/:id").get(getProduct);
 
 // router.post("/api/product", async (req, res) => {
 //   try {

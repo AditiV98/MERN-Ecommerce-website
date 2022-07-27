@@ -4,6 +4,7 @@ import axios from "axios";
 import { register, clearErrors } from "../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "./login.css";
 function SignUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

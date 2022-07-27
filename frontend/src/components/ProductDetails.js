@@ -19,7 +19,7 @@ const ProductDetails = () => {
   const { _id, image, title, price, category, description } = product;
   const dispatch = useDispatch();
   const fetchProductDetail = async (_id) => {
-    const response = await axios.get(`/api/product/new/${_id}`).catch((err) => {
+    const response = await axios.get(`/api/product/${_id}`).catch((err) => {
       console.log("Err: ", err);
     });
     dispatch(selectedProduct(response.data));

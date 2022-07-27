@@ -1,7 +1,7 @@
 // import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Nav";
-import Home from "./Home";
+import Home from "./Home/Home";
 import Shop from "./Shop";
 import About from "./About/About";
 import Contact from "./Contact/Contact";
@@ -17,6 +17,10 @@ import { useEffect } from "react";
 import { loadUser } from "../actions/userAction";
 import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
+import DashBoard from "./admin/DashBoard";
+import ProductList from "./admin/ProductList";
+import Footer from "./Footer/Footer";
+import AddProduct from "./admin/AddProduct";
 
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -56,8 +60,29 @@ function MyApp() {
               element={<UpdatePassword></UpdatePassword>}
             ></Route>
           )}
+          {isAuthenticated && (
+            <Route
+              path="/admin/dashboard"
+              element={<DashBoard></DashBoard>}
+            ></Route>
+          )}
+          {isAuthenticated && (
+            <Route
+              path="/admin/All-products"
+              element={<ProductList></ProductList>}
+            ></Route>
+          )}
+          {isAuthenticated && (
+            <Route
+              path="/admin/Add-products"
+              element={<AddProduct></AddProduct>}
+            ></Route>
+          )}
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
+      <br></br>
+      <br></br>
     </div>
   );
 }

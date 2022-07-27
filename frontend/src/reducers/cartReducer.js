@@ -1,4 +1,4 @@
-import { ActionTypes } from "../constants/productConstants";
+import { ActionTypes } from "../constants/cartConstants";
 const INIT_STATE = {
   cartItems: [],
 };
