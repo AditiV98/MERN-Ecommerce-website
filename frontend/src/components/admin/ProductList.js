@@ -55,8 +55,8 @@ const ProductList = () => {
                   <TableCell align="left">
                     {" "}
                     <Link
-                      to="/product/${_id}"
-                      style={{ textDecoration: "none", color: "black" }}
+                      to={`/admin/product/${product._id}`}
+                      // style={{ textDecoration: "none", color: "black" }}
                     >
                       {product._id}
                     </Link>
