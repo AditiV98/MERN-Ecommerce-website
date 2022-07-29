@@ -51,6 +51,7 @@ function SignUp() {
       navigate("/home");
     }
   }, [dispatch, error, alert, isAuthenticated]);
+
   return (
     <div className="login-page">
       <form onSubmit={registerSubmit}>

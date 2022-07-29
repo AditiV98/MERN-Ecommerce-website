@@ -88,7 +88,7 @@ function MyApp() {
           )}
           {isAuthenticated && user.role === "admin" && (
             <Route
-              path="/admin/update-product"
+              path="/admin/:productId/update-product"
               element={<UpdateProduct></UpdateProduct>}
             ></Route>
           )}

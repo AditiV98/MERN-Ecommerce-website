@@ -1,18 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "./login.css";
 import { Link } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { createProduct, clearErrors } from "../../actions/productAction";
+import { ActionTypes } from "../../constants/productConstants";
+import { useNavigate } from "react-router-dom";
 const AddProduct = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error, success } = useSelector((state) => state.newProduct);
+
+  const [newProduct, setNewProduct] = useState({
+    title: "",
+    price: "",
+    description: "",
+    category: "",
+    image: "",
+  });
+
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
+  };
+
+  const createNewProduct = async (e) => {
+    e.preventDefault();
+
+    dispatch(createProduct(newProduct));
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert("Product Created Successfully");
+      navigate("/admin/dashboard");
+      dispatch({ type: ActionTypes.NEW_PRODUCT_RESET });
+    }
+  }, [dispatch, alert, error, success]);
+
   return (
     <div className="login-page">
-      <form>
+      <form onSubmit={createNewProduct}>
         <h2>Add New Product</h2>
         <input
           type="text"
           name="title"
           required
           placeholder="Title"
-          //   value={user.name}
-          //   onChange={onChangeInput}
+          value={newProduct.title}
+          onChange={onChangeInput}
         />
 
         <input
@@ -20,8 +60,8 @@ const AddProduct = () => {
           name="price"
           required
           placeholder="Price"
-          //   value={user.email}
-          //   onChange={onChangeInput}
+          value={newProduct.price}
+          onChange={onChangeInput}
         />
 
         <input
@@ -30,8 +70,8 @@ const AddProduct = () => {
           required
           autoComplete="on"
           placeholder="Description"
-          //   value={user.password}
-          //   onChange={onChangeInput}
+          value={newProduct.description}
+          onChange={onChangeInput}
         />
         <input
           type="text"
@@ -39,16 +79,16 @@ const AddProduct = () => {
           required
           autoComplete="on"
           placeholder="Category"
-          //   value={user.password}
-          //   onChange={onChangeInput}
+          value={newProduct.category}
+          onChange={onChangeInput}
         />
         <input
           type="url"
           name="image"
           required
           placeholder="Image"
-          //   value={user.password}
-          //   onChange={onChangeInput}
+          value={newProduct.image}
+          onChange={onChangeInput}
         />
 
         <div className="row">

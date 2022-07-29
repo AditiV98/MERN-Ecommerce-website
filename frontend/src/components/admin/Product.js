@@ -97,7 +97,7 @@ const Product = () => {
                     </div> */}
                   {/* <div className="visible content">Add to Cart</div> */}
                   <Link
-                    to="/admin/update-product"
+                    to={`/admin/${_id}/update-product`}
                     style={{ textDecoration: "none", color: "white" }}
                   >
                     <Button variant="contained">Update Product</Button>
