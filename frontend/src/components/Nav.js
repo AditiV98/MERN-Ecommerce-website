@@ -15,10 +15,7 @@ export default function Header() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        //  style={{ background: "#212121" }}
-      >
+      <AppBar position="static" style={{ background: "#f06292" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link

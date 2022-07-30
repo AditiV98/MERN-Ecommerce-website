@@ -55,7 +55,7 @@ const Cart = () => {
       ) : (
         <>
           <br></br>
-          <Container>
+          <Container style={{ background: "#fce4ec" }}>
             <br></br>
 
             <Box sx={{ flexGrow: 1 }}>

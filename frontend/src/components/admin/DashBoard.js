@@ -6,16 +6,16 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import QueueIcon from "@mui/icons-material/Queue";
 const DashBoard = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} style={{ background: "#fce4ec" }}>
       <br></br>
       <br></br>
       <Grid
         container
         spacing={2}
-        style={{ border: "1px solid black" }}
-        height="420px"
+        // style={{ border: "1px solid black" }}
+        height="500px"
       >
-        <Grid item xs={2} style={{ border: "1px solid black" }}>
+        <Grid item xs={2} style={{ background: "#f8bbd0" }}>
           <Link
             to="/admin/All-products"
             style={{ textDecoration: "none", color: "black" }}
@@ -42,7 +42,7 @@ const DashBoard = () => {
             </h2>
           </Link> */}
         </Grid>
-        <Grid item xs={10} style={{ border: "1px solid black" }}></Grid>
+        <Grid item xs={10}></Grid>
       </Grid>
     </Box>
   );

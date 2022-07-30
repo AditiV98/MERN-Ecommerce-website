@@ -39,7 +39,7 @@ const ProductList = () => {
       >
         <TableContainer>
           <Table sx={{ minWidth: 600 }} aria-label="simple table">
-            <TableHead>
+            <TableHead style={{ background: "#f8bbd0" }}>
               <TableRow>
                 <TableCell style={{ fontSize: "15pt" }}> Sr. No.</TableCell>
                 <TableCell style={{ fontSize: "15pt" }}> ID</TableCell>
