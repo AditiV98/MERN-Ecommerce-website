@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import QueueIcon from "@mui/icons-material/Queue";
+import PersonIcon from "@mui/icons-material/Person";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllUsers } from "../../actions/userAction.js";
+import { setProducts } from "../../actions/productAction";
+import axios from "axios";
+import "./DashBoard.css";
 const DashBoard = () => {
+  const dispatch = useDispatch();
+  const fetchProducts = async () => {
+    const response = await axios.get("/api/products").catch((err) => {
+      console.log("Err: ", err);
+    });
+    dispatch(setProducts(response.data));
+  };
+
+  const { products } = useSelector((state) => state.allProducts);
+
+  // const { orders } = useSelector((state) => state.allOrders);
+
+  const { users } = useSelector((state) => state.allUsers);
+
+  useEffect(() => {
+    fetchProducts();
+    // dispatch(setProducts());
+    // dispatch(getAllOrders());
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
   return (
     <Box sx={{ flexGrow: 1 }} style={{ background: "#fce4ec" }}>
       <br></br>
@@ -33,16 +61,57 @@ const DashBoard = () => {
               <QueueIcon /> Add Products
             </h2>
           </Link>
-          {/* <Link
-            to="/admin/All-products"
+          <br></br>
+          <Link
+            to="/admin/users"
             style={{ textDecoration: "none", color: "black" }}
           >
             <h2>
-              <ListAltIcon /> All Products
+              <PersonIcon /> All Users
+            </h2>
+          </Link>
+          <br></br>
+          {/* <Link
+            to="/admin/users"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <h2>
+              <PersonAddIcon /> Add Users
             </h2>
           </Link> */}
         </Grid>
-        <Grid item xs={10}></Grid>
+        <Grid container item xs={10}>
+          <Grid item xs={6}>
+            <center>
+              <div className="dashboardSummaryBox2">
+                <Link
+                  to="/admin/All-products"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <p>Products</p>
+                  <p>{products && products.length}</p>
+                </Link>
+              </div>
+            </center>
+          </Grid>
+          {/* <Link to="/admin/orders">
+              <p>Orders</p>
+              <p>{orders && orders.length}</p>
+            </Link> */}
+          <Grid item xs={6}>
+            <center>
+              <div className="dashboardSummaryBox2">
+                <Link
+                  to="/admin/users"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <p>Users</p>
+                  <p>{users && users.length}</p>
+                </Link>
+              </div>
+            </center>
+          </Grid>
+        </Grid>
       </Grid>
     </Box>
   );

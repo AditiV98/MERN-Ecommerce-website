@@ -23,6 +23,8 @@ import Footer from "./Footer/Footer";
 import AddProduct from "./admin/AddProduct";
 import Product from "./admin/Product";
 import UpdateProduct from "./admin/UpdateProduct";
+import UserList from "./admin/UserList";
+import User from "./admin/User";
 
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -91,6 +93,12 @@ function MyApp() {
               path="/admin/:productId/update-product"
               element={<UpdateProduct></UpdateProduct>}
             ></Route>
+          )}
+          {isAuthenticated && user.role === "admin" && (
+            <Route path="/admin/users" element={<UserList></UserList>}></Route>
+          )}
+          {isAuthenticated && user.role === "admin" && (
+            <Route path="/admin/user/:userId" element={<User></User>}></Route>
           )}
         </Routes>
         <Footer></Footer>
