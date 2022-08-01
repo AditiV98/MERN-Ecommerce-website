@@ -37,7 +37,7 @@ export default function Header() {
           {/* {user.role === "" && user.role === "user" ? ( */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
             <Link to="shop" style={{ textDecoration: "none", color: "white" }}>
-              Shop
+              Products
             </Link>
           </Typography>
           {/* ) : (
