@@ -50,7 +50,7 @@ const Cart = () => {
           <RemoveShoppingCartIcon />
 
           <Typography>No Product in Your Cart</Typography>
-          <Link to="/home">View Products</Link>
+          <Link to="/shop">View Products</Link>
         </div>
       ) : (
         <>

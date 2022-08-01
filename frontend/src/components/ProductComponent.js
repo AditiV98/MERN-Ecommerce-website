@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 const ProductComponent = () => {
   const products = useSelector((state) => state.allProducts.products);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const renderList = products.map((product) => {
     const { _id, title, image, price, category } = product;
     return (

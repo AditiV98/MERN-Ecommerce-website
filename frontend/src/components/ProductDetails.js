@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   let product = useSelector((state) => state.ProductDetails);
   const { _id, image, title, price, category, description } = product;
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const ProductDetails = () => {
                     className="ui fluid "
                     src={image}
                     width="300"
-                    height="400"
+                    height="350"
                   />
                 </div>
                 <div className="column rp">
@@ -67,9 +67,13 @@ const ProductDetails = () => {
                       <i className="shop icon"></i>
                     </div> */}
                   {/* <div className="visible content">Add to Cart</div> */}
-                  <Button variant="contained" onClick={() => send(product)}>
-                    Add to cart
-                  </Button>
+                  {isAuthenticated && user.role === "user" ? (
+                    <Button variant="contained" onClick={() => send(product)}>
+                      Add to cart
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
                   {/* </div> */}
                 </div>
               </div>

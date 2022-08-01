@@ -81,7 +81,7 @@ const Product = () => {
                     className="ui fluid "
                     src={image}
                     width="300"
-                    height="400"
+                    height="350"
                   />
                 </div>
                 <div className="column rp">

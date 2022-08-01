@@ -34,11 +34,26 @@ export default function Header() {
               Home
             </Link>
           </Typography>
+          {/* {user.role === "" && user.role === "user" ? ( */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
             <Link to="shop" style={{ textDecoration: "none", color: "white" }}>
               Shop
             </Link>
           </Typography>
+          {/* ) : (
+            <></>
+          )} */}
+
+          {/* ) : (
+          //   <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+          //     <Link
+          //       to="shop"
+          //       style={{ textDecoration: "none", color: "white" }}
+          //     >
+          //       Shop
+          //     </Link>
+          //   </Typography>
+          // )} */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
             <Link
               to="contact-us"
@@ -52,7 +67,7 @@ export default function Header() {
               About
             </Link>
           </Typography>
-          {isAuthenticated ? (
+          {isAuthenticated && user.role === "user" ? (
             <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
               <Link
                 to="cart"
