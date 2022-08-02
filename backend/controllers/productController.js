@@ -14,17 +14,41 @@ exports.createProduct = async (req, res, next) => {
   });
 };
 
-//get all products
-exports.getAllProducts = async (req, res) => {
+// //get all products
+// exports.getAllProducts = async (req, res) => {
+
+//   const apiFeature = new ApiFeatures(Product.find(), req.query).search();
+//   //   res.status(200).json({ message: "Route is working fine" });
+//   try {
+//     const allProducts = await apiFeature.query; //Product.find({});
+//     res.status(200).json(allProducts);
+//   } catch (err) {
+//     res.json(err);
+//   }
+// };
+
+exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
+  const productsCount = await Product.countDocuments();
+
   const apiFeature = new ApiFeatures(Product.find(), req.query).search();
-  //   res.status(200).json({ message: "Route is working fine" });
-  try {
-    const allProducts = await apiFeature.query; //Product.find({});
-    res.status(200).json(allProducts);
-  } catch (err) {
-    res.json(err);
-  }
-};
+  // .filter();
+
+  let products = await apiFeature.query;
+
+  let filteredProductsCount = products.length;
+
+  // apiFeature.pagination(resultPerPage);
+
+  // products = await apiFeature.query;
+
+  res.status(200).json({
+    success: true,
+    products,
+    productsCount,
+    // resultPerPage,
+    filteredProductsCount,
+  });
+});
 
 //get single product
 exports.getProduct = async (req, res) => {

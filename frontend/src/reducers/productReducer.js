@@ -3,10 +3,48 @@ const intialState = {
   products: [],
 };
 
-export const productsReducer = (state = intialState, { type, payload }) => {
-  switch (type) {
-    case ActionTypes.SET_PRODUCTS:
-      return { ...state, products: payload };
+// export const productsReducer = (state = intialState, { type, payload }) => {
+//   switch (type) {
+//     case ActionTypes.SET_PRODUCTS:
+//       return { ...state, products: payload };
+//     default:
+//       return state;
+//   }
+// };
+export const productsReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case ActionTypes.ALL_PRODUCT_REQUEST:
+      // case ADMIN_PRODUCT_REQUEST:
+      return {
+        loading: true,
+        products: [],
+      };
+    case ActionTypes.ALL_PRODUCT_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload.products,
+        productsCount: action.payload.productsCount,
+
+        filteredProductsCount: action.payload.filteredProductsCount,
+      };
+
+    // case ADMIN_PRODUCT_SUCCESS:
+    //   return {
+    //     loading: false,
+    //     products: action.payload,
+    //   };
+    case ActionTypes.ALL_PRODUCT_FAIL:
+      // case ADMIN_PRODUCT_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case ActionTypes.CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }

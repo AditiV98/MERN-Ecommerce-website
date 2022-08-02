@@ -25,6 +25,7 @@ import Product from "./admin/Product";
 import UpdateProduct from "./admin/UpdateProduct";
 import UserList from "./admin/UserList";
 import User from "./admin/User";
+import Search from "./Search";
 
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -43,10 +44,14 @@ function MyApp() {
             path="/product/:productId"
             element={<ProductDetails></ProductDetails>}
           ></Route>
-          <Route path="shop" element={<Shop></Shop>}></Route>
+          <Route path="products" element={<Shop></Shop>}></Route>
+          <Route path="/products/:keyword" element={<Shop></Shop>}></Route>
+          <Route path="search" element={<Search></Search>}></Route>
           <Route path="contact-us" element={<Contact></Contact>}></Route>
           <Route path="about" element={<About></About>}></Route>
-          <Route path="cart" element={<Cart></Cart>}></Route>
+          {isAuthenticated && user.role === "user" && (
+            <Route path="cart" element={<Cart></Cart>}></Route>
+          )}
           <Route path="signup" element={<SignUp></SignUp>}></Route>
           <Route path="login" element={<Signin></Signin>}></Route>
           {isAuthenticated && (

@@ -16,6 +16,31 @@ export const selectedProduct = (product) => {
     payload: product,
   };
 };
+export const getProduct =
+  (keyword = "") =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: ActionTypes.ALL_PRODUCT_REQUEST });
+
+      let link = `/api/products?keyword=${keyword}`;
+
+      // if (category) {
+      //   link = `/api/products?keyword=${keyword}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+      // }
+
+      const { data } = await axios.get(link);
+
+      dispatch({
+        type: ActionTypes.ALL_PRODUCT_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ActionTypes.ALL_PRODUCT_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
 
 // Create Product
 export const createProduct = (productData) => async (dispatch) => {

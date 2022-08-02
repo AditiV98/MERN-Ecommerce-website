@@ -8,26 +8,27 @@ import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../actions/userAction.js";
-import { setProducts } from "../../actions/productAction";
+import { getProduct } from "../../actions/productAction";
 import axios from "axios";
 import "./DashBoard.css";
 const DashBoard = () => {
   const dispatch = useDispatch();
-  const fetchProducts = async () => {
-    const response = await axios.get("/api/products").catch((err) => {
-      console.log("Err: ", err);
-    });
-    dispatch(setProducts(response.data));
-  };
+  // const fetchProducts = async () => {
+  //   const response = await axios.get("/api/products").catch((err) => {
+  //     console.log("Err: ", err);
+  //   });
+  //   dispatch(setProducts(response.data));
+  // };
 
-  const { products } = useSelector((state) => state.allProducts);
+  const { products } = useSelector((state) => state.Products);
 
   // const { orders } = useSelector((state) => state.allOrders);
 
   const { users } = useSelector((state) => state.allUsers);
 
   useEffect(() => {
-    fetchProducts();
+    dispatch(getProduct());
+    // fetchProducts();
     // dispatch(setProducts());
     // dispatch(getAllOrders());
     dispatch(getAllUsers());

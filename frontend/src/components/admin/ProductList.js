@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../../actions/productAction";
+import { getProduct, clearErrors } from "../../actions/productAction";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,19 +12,37 @@ import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 const ProductList = () => {
+  const { keyword } = useParams();
   const dispatch = useDispatch();
-  const fetchProducts = async () => {
-    const response = await axios.get("/api/products").catch((err) => {
-      console.log("Err: ", err);
-    });
-    dispatch(setProducts(response.data));
-  };
+  // const fetchProducts = async () => {
+  //   const response = await axios.get("/api/products").catch((err) => {
+  //     console.log("Err: ", err);
+  //   });
+  //   dispatch(setProducts(response.data));
+  // };
 
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+
+    filteredProductsCount,
+  } = useSelector((state) => state.Products);
   useEffect(() => {
-    fetchProducts();
-  }, []);
-  const products = useSelector((state) => state.allProducts.products);
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+
+    dispatch(getProduct(keyword));
+  }, [dispatch, keyword, alert, error]);
+
   return (
     <Box component="span">
       <center>
@@ -49,22 +67,23 @@ const ProductList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {products.map((product, index) => (
-                <TableRow key={product._id}>
-                  <TableCell align="left">{index + 1}</TableCell>
-                  <TableCell align="left">
-                    {" "}
-                    <Link
-                      to={`/admin/product/${product._id}`}
-                      // style={{ textDecoration: "none", color: "black" }}
-                    >
-                      {product._id}
-                    </Link>
-                  </TableCell>
-                  <TableCell align="left">{product.title}</TableCell>
-                  <TableCell align="left">{product.price}</TableCell>
-                  <TableCell align="left">{product.category}</TableCell>
-                  {/* <TableCell align="left">
+              {products &&
+                products.map((product, index) => (
+                  <TableRow key={product._id}>
+                    <TableCell align="left">{index + 1}</TableCell>
+                    <TableCell align="left">
+                      {" "}
+                      <Link
+                        to={`/admin/product/${product._id}`}
+                        // style={{ textDecoration: "none", color: "black" }}
+                      >
+                        {product._id}
+                      </Link>
+                    </TableCell>
+                    <TableCell align="left">{product.title}</TableCell>
+                    <TableCell align="left">{product.price}</TableCell>
+                    <TableCell align="left">{product.category}</TableCell>
+                    {/* <TableCell align="left">
                     {" "}
                     <Button
                       color="error"
@@ -75,8 +94,8 @@ const ProductList = () => {
                       Delete
                     </Button>
                   </TableCell> */}
-                </TableRow>
-              ))}
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

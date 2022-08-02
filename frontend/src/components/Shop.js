@@ -1,25 +1,48 @@
 import React, { useEffect, useCallback, useMemo } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts } from "../actions/productAction";
+import { getProduct, clearErrors } from "../actions/productAction";
 import ProductComponent from "./ProductComponent";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-
+import Search from "./Search";
+import { useParams } from "react-router-dom";
 const Shop = () => {
+  const { keyword } = useParams();
   // const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
-  const fetchProducts = async () => {
-    const response = await axios.get("/api/products").catch((err) => {
-      console.log("Err: ", err);
-    });
-    dispatch(setProducts(response.data));
-  };
+  // const [price, setPrice] = useState([0, 25000]);
+  // const [category, setCategory] = useState("");
 
+  // const [ratings, setRatings] = useState(0);
+  const {
+    products,
+    loading,
+    error,
+    productsCount,
+
+    filteredProductsCount,
+  } = useSelector((state) => state.Products);
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+
+    dispatch(getProduct(keyword));
+  }, [dispatch, keyword, alert, error]);
+
+  // const fetchProducts = async () => {
+  //   const response = await axios.get("/api/products").catch((err) => {
+  //     console.log("Err: ", err);
+  //   });
+  //   dispatch(setProducts(response.data));
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, []);
 
   // console.log("Products :", products);
   return (
@@ -34,8 +57,11 @@ const Shop = () => {
       <Container>
         <center>
           <h1>ALL PRODUCTS</h1>
+
+          <hr></hr>
+          <Search />
+          <hr></hr>
         </center>
-        <hr></hr>
         <br></br>
         <Box sx={{ flexGrow: 1 }}>
           <br></br>

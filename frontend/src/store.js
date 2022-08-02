@@ -24,7 +24,7 @@ import {
 } from "./reducers/orderReducer";
 
 const reducer = combineReducers({
-  allProducts: productsReducer,
+  Products: productsReducer,
   ProductDetails: selectedProductsReducer,
   newProduct: newProductReducer,
   product: productReducer,

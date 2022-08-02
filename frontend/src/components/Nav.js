@@ -34,15 +34,30 @@ export default function Header() {
               Home
             </Link>
           </Typography>
-          {/* {user.role === "" && user.role === "user" ? ( */}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
-            <Link to="shop" style={{ textDecoration: "none", color: "white" }}>
-              Products
-            </Link>
-          </Typography>
-          {/* ) : (
+          {!isAuthenticated || user.role === "user" ? (
+            <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+              <Link
+                to="products"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Shop
+              </Link>
+            </Typography>
+          ) : (
             <></>
-          )} */}
+            // {user.role==="user" ? (
+            //   <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+            //   <Link
+            //     to="shop"
+            //     style={{ textDecoration: "none", color: "white" }}
+            //   >
+            //     Products
+            //   </Link>
+            // </Typography>
+            // ):(
+            //   <></>
+            // )}
+          )}
 
           {/* ) : (
           //   <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
@@ -81,9 +96,16 @@ export default function Header() {
           ) : (
             <>{/* <h1>Please login</h1> */}</>
           )}
-          <IconButton size="large" aria-label="search" color="inherit">
-            <SearchIcon />
-          </IconButton>
+          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+            <Link
+              to="search"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <IconButton size="large" aria-label="search" color="inherit">
+                <SearchIcon />
+              </IconButton>
+            </Link>
+          </Typography> */}
           {isAuthenticated ? (
             <>
               <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
@@ -92,14 +114,6 @@ export default function Header() {
             </>
           ) : (
             <>
-              {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
-                <Link
-                  to="signup"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  SignUp
-                </Link>
-              </Typography> */}
               <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
                 <Link
                   to="login"
