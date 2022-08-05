@@ -18,10 +18,12 @@ app.use(cors());
 const ProductsRoute = require("./routes/productRoute");
 const UserRoute = require("./routes/userRoute");
 const OrderRoute = require("./routes/orderRoute");
+const PaymentRoute = require("./routes/paymentRoute");
 
 app.use("/api/", ProductsRoute);
 app.use("/api/", UserRoute);
 app.use("/api/", OrderRoute);
+app.use("/api/", PaymentRoute);
 
 // Middleware for Errors
 app.use(errorMiddleware);

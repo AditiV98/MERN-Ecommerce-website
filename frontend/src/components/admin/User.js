@@ -105,13 +105,13 @@ const User = () => {
                     Delete User
                   </Button>
                 </Grid>
-                <Grid item xs={4}>
+                {/* <Grid item xs={4}>
                   <Button variant="contained">
                     <Link to="/update-password" style={{ color: "white" }}>
                       Update User
                     </Link>
                   </Button>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={4}>
                   <Button variant="contained">
                     <Link to="/update-profile" style={{ color: "white" }}>

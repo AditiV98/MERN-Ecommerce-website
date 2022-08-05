@@ -50,7 +50,7 @@ const ProductComponent = () => {
                   {title}
                 </Typography>
 
-                <Typography variant="body2">$ {price}</Typography>
+                <Typography variant="body2">₹{price}</Typography>
                 <Typography variant="body2">{category}</Typography>
               </CardContent>
               {/* <CardActions>

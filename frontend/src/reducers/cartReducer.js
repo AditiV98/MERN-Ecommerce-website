@@ -1,6 +1,7 @@
 import { ActionTypes } from "../constants/cartConstants";
 const INIT_STATE = {
   cartItems: [],
+  shippingInfo: {},
 };
 
 export const cartReducer = (state = INIT_STATE, { type, payload }) => {
@@ -51,6 +52,13 @@ export const cartReducer = (state = INIT_STATE, { type, payload }) => {
           cartItems: state.cartItems.filter((item) => item._id !== payload._id),
         };
       }
+
+    case ActionTypes.SAVE_SHIPPING_INFO:
+      return {
+        ...state,
+        shippingInfo: payload,
+      };
+
     default:
       return state;
   }

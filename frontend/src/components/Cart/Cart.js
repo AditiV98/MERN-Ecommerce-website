@@ -50,7 +50,7 @@ const Cart = () => {
           <RemoveShoppingCartIcon />
 
           <Typography>No Product in Your Cart</Typography>
-          <Link to="/shop">View Products</Link>
+          <Link to="/products">View Products</Link>
         </div>
       ) : (
         <>
@@ -60,10 +60,12 @@ const Cart = () => {
 
             <Box sx={{ flexGrow: 1 }}>
               <br></br>
+
               <Grid container spacing={6}>
                 <Grid item xs={8}>
                   <CartComponent />
                 </Grid>
+
                 <Grid item xs={4}>
                   <Card sx={{ minWidth: 275 }}>
                     <CardContent>
@@ -79,12 +81,17 @@ const Cart = () => {
                         <span>
                           <b>TOTAL PRICE: </b>
                         </span>
-                        <Button variant="outlined"> $ {price}</Button>
+                        <Button variant="outlined">₹{price}</Button>
                         <br></br>
                         <br></br>
                         <br></br>
                       </div>
-                      <Button variant="contained">Check Out</Button>
+                      <Link
+                        to="/shipping"
+                        style={{ textDecoration: "none", color: "white" }}
+                      >
+                        <Button variant="contained">Check Out</Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 </Grid>

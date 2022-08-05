@@ -13,7 +13,7 @@ import Account from "./account";
 import UpdateProfile from "./UpdateProfile/updateProfile";
 import UpdatePassword from "./UpdatePassword/UpdatePassword";
 import store from "../store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { loadUser } from "../actions/userAction";
 import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
@@ -26,17 +26,46 @@ import UpdateProduct from "./admin/UpdateProduct";
 import UserList from "./admin/UserList";
 import User from "./admin/User";
 import Search from "./Search";
+import OrderList from "./admin/OrderList";
+import OrderDetails from "./admin/OrderDetails";
+import Shipping from "./Cart/Shipping";
+import ConfirmOrder from "./Cart/ConfirmOrder";
+import axios from "axios";
+import Payment from "./Cart/Payment";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from "./Cart/OrderSuccess";
+import MyOrder from "./Order/MyOrder";
 
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
   useEffect(() => {
     store.dispatch(loadUser());
+    getStripeApiKey();
   }, []);
   return (
     <div>
       <BrowserRouter>
         <Header></Header>
         {/* {isAuthenticated && <UserOptions user={user} />} */}
+        {stripeApiKey && (
+          <Elements stripe={loadStripe(stripeApiKey)}>
+            {isAuthenticated && user.role === "user" && (
+              <Routes>
+                <Route
+                  path="process/payment"
+                  element={<Payment></Payment>}
+                ></Route>
+              </Routes>
+            )}
+          </Elements>
+        )}
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="home" element={<Home></Home>}></Route>
@@ -52,6 +81,28 @@ function MyApp() {
           {isAuthenticated && user.role === "user" && (
             <Route path="cart" element={<Cart></Cart>}></Route>
           )}
+          {isAuthenticated && user.role === "user" && (
+            <Route path="shipping" element={<Shipping></Shipping>}></Route>
+          )}
+          {isAuthenticated && user.role === "user" && (
+            <Route
+              path="order/confirm"
+              element={<ConfirmOrder></ConfirmOrder>}
+            ></Route>
+          )}
+          {isAuthenticated && user.role === "user" && (
+            <Route
+              path="success"
+              element={<OrderSuccess></OrderSuccess>}
+            ></Route>
+          )}
+          {isAuthenticated && user.role === "user" && (
+            <Route path="orders" element={<MyOrder></MyOrder>}></Route>
+          )}
+          {/* {isAuthenticated && user.role === "user" && (
+            <Route path="process/payment" element={<Payment></Payment>}></Route>
+          )} */}
+
           <Route path="signup" element={<SignUp></SignUp>}></Route>
           <Route path="login" element={<Signin></Signin>}></Route>
           {isAuthenticated && (
@@ -104,6 +155,18 @@ function MyApp() {
           )}
           {isAuthenticated && user.role === "admin" && (
             <Route path="/admin/user/:userId" element={<User></User>}></Route>
+          )}
+          {isAuthenticated && user.role === "admin" && (
+            <Route
+              path="/admin/All-orders"
+              element={<OrderList></OrderList>}
+            ></Route>
+          )}
+          {isAuthenticated && user.role === "admin" && (
+            <Route
+              path="/admin/order/:orderId"
+              element={<OrderDetails></OrderDetails>}
+            ></Route>
           )}
         </Routes>
         <Footer></Footer>

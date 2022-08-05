@@ -72,6 +72,15 @@ const DashBoard = () => {
             </h2>
           </Link>
           <br></br>
+          <Link
+            to="/admin/All-orders"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <h2>
+              <ListAltIcon /> All Orders
+            </h2>
+          </Link>
+          <br></br>
           {/* <Link
             to="/admin/users"
             style={{ textDecoration: "none", color: "black" }}
