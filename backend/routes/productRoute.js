@@ -5,7 +5,7 @@ const {
   getAllProducts,
   createProduct,
   deleteProduct,
-  getProduct,
+  getProductDetails,
   updateProduct,
 } = require("../controllers/productController");
 
@@ -19,7 +19,7 @@ router
 
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct);
 
-router.route("/product/:id").get(getProduct);
+router.route("/product/:id").get(getProductDetails);
 
 // router.post("/api/product", async (req, res) => {
 //   try {

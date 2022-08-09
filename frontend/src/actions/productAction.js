@@ -1,13 +1,13 @@
 import { ActionTypes } from "../constants/productConstants";
 import axios from "axios";
 
-//get all products
-export const setProducts = (products) => {
-  return {
-    type: ActionTypes.SET_PRODUCTS,
-    payload: products,
-  };
-};
+// //get all products
+// export const setProducts = (products) => {
+//   return {
+//     type: ActionTypes.SET_PRODUCTS,
+//     payload: products,
+//   };
+// };
 
 //get a product
 export const selectedProduct = (product) => {
@@ -16,6 +16,25 @@ export const selectedProduct = (product) => {
     payload: product,
   };
 };
+export const getProductDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ActionTypes.PRODUCT_DETAILS_REQUEST });
+
+    const { data } = await axios.get(`/api/product/${id}`);
+
+    dispatch({
+      type: ActionTypes.PRODUCT_DETAILS_SUCCESS,
+      payload: data.product,
+    });
+  } catch (error) {
+    dispatch({
+      type: ActionTypes.PRODUCT_DETAILS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//get all products
 export const getProduct =
   (keyword = "") =>
   async (dispatch) => {

@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productsReducer,
-  selectedProductsReducer,
+  productDetailsReducer,
   newProductReducer,
   productReducer,
 } from "./reducers/productReducer";
@@ -13,7 +13,7 @@ import {
   userDetailsReducer,
   userReducer,
 } from "./reducers/userReducer";
-
+import { wishlistReducer } from "./reducers/wishlistReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import {
   allOrdersReducer,
@@ -25,13 +25,14 @@ import {
 
 const reducer = combineReducers({
   Products: productsReducer,
-  ProductDetails: selectedProductsReducer,
+  productDetails: productDetailsReducer,
   newProduct: newProductReducer,
   product: productReducer,
-  // cartItem: cartreducer,
+
   user: userReducer,
   profile: profileReducer,
   // forgotPassword: forgotPasswordReducer,
+  wishlist: wishlistReducer,
   cart: cartReducer,
   newOrder: newOrderReducer,
   myOrders: myOrdersReducer,
@@ -48,9 +49,14 @@ let initialState = {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
-    // shippingInfo: localStorage.getItem("shippingInfo")
-    //   ? JSON.parse(localStorage.getItem("shippingInfo"))
-    //   : {},
+    shippingInfo: localStorage.getItem("shippingInfo")
+      ? JSON.parse(localStorage.getItem("shippingInfo"))
+      : {},
+  },
+  wishlist: {
+    wishList: localStorage.getItem("wishList")
+      ? JSON.parse(localStorage.getItem("wishList"))
+      : [],
   },
 };
 

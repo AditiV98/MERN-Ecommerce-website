@@ -61,6 +61,34 @@ export const selectedProductsReducer = (state = {}, { type, payload }) => {
       return state;
   }
 };
+export const productDetailsReducer = (state = { product: {} }, action) => {
+  switch (action.type) {
+    case ActionTypes.PRODUCT_DETAILS_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+    case ActionTypes.PRODUCT_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        product: action.payload,
+      };
+    case ActionTypes.PRODUCT_DETAILS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case ActionTypes.CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
 export const newProductReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case ActionTypes.NEW_PRODUCT_REQUEST:

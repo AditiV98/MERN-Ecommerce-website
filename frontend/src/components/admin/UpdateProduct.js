@@ -8,7 +8,7 @@ import "./login.css";
 const UpdateProduct = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
-  let { error, product } = useSelector((state) => state.ProductDetails);
+  let { error, product } = useSelector((state) => state.productDetails);
   // const { _id, image, title, price, category, description } = product;
   const {
     loading,

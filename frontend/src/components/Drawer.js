@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { logout } from "../actions/userAction";
-// const pages = ["Products", "Services", "ABoutUs", "ContactUs"];
+
 const DrawerComp = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const navigate = useNavigate();
@@ -62,6 +62,13 @@ const DrawerComp = () => {
           {!isAuthenticated || user.role === "user" ? (
             <ListItem button onClick={() => navigate("/about")}>
               <ListItemText>About Us</ListItemText>
+            </ListItem>
+          ) : (
+            <></>
+          )}
+          {isAuthenticated && user.role === "user" ? (
+            <ListItem button onClick={() => navigate("/wishlist")}>
+              <ListItemText>Wishlist</ListItemText>
             </ListItem>
           ) : (
             <></>

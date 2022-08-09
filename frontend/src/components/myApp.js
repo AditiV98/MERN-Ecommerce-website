@@ -36,6 +36,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./Cart/OrderSuccess";
 import MyOrder from "./Order/MyOrder";
+import MyOrderDetails from "./Order/MyOrderDetails";
+import UpdateStatus from "./admin/UpdateStatus";
+import WishList from "./WishList/WishList";
 
 function MyApp() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -59,7 +62,7 @@ function MyApp() {
             {isAuthenticated && user.role === "user" && (
               <Routes>
                 <Route
-                  path="process/payment"
+                  path="/process/payment"
                   element={<Payment></Payment>}
                 ></Route>
               </Routes>
@@ -78,6 +81,9 @@ function MyApp() {
           <Route path="search" element={<Search></Search>}></Route>
           <Route path="contact-us" element={<Contact></Contact>}></Route>
           <Route path="about" element={<About></About>}></Route>
+          {isAuthenticated && user.role === "user" && (
+            <Route path="wishlist" element={<WishList></WishList>}></Route>
+          )}
           {isAuthenticated && user.role === "user" && (
             <Route path="cart" element={<Cart></Cart>}></Route>
           )}
@@ -99,9 +105,12 @@ function MyApp() {
           {isAuthenticated && user.role === "user" && (
             <Route path="orders" element={<MyOrder></MyOrder>}></Route>
           )}
-          {/* {isAuthenticated && user.role === "user" && (
-            <Route path="process/payment" element={<Payment></Payment>}></Route>
-          )} */}
+          {isAuthenticated && user.role === "user" && (
+            <Route
+              path="/order/:orderId"
+              element={<MyOrderDetails></MyOrderDetails>}
+            ></Route>
+          )}
 
           <Route path="signup" element={<SignUp></SignUp>}></Route>
           <Route path="login" element={<Signin></Signin>}></Route>
@@ -166,6 +175,12 @@ function MyApp() {
             <Route
               path="/admin/order/:orderId"
               element={<OrderDetails></OrderDetails>}
+            ></Route>
+          )}
+          {isAuthenticated && user.role === "admin" && (
+            <Route
+              path="/admin/:orderId/update-order"
+              element={<UpdateStatus></UpdateStatus>}
             ></Route>
           )}
         </Routes>

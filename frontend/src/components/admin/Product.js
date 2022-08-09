@@ -4,30 +4,34 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../actions/cartAction";
-import {
-  selectedProduct,
-  deleteProduct,
-  clearErrors,
-} from "../../actions/productAction";
+
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ActionTypes } from "../../constants/productConstants";
+import {
+  clearErrors,
+  getProductDetails,
+  deleteProduct,
+} from "../../actions/productAction";
 const Product = () => {
   const { productId } = useParams();
   // const navigate = useNavigate();
 
-  let product = useSelector((state) => state.ProductDetails);
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetails
+  );
+
   const { _id, image, title, price, category, description } = product;
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const fetchProductDetail = async (_id) => {
-    const response = await axios.get(`/api/product/${_id}`).catch((err) => {
-      console.log("Err: ", err);
-    });
-    dispatch(selectedProduct(response.data));
-  };
+  // const fetchProductDetail = async (_id) => {
+  //   const response = await axios.get(`/api/product/${_id}`).catch((err) => {
+  //     console.log("Err: ", err);
+  //   });
+  //   dispatch(selectedProduct(response.data));
+  // };
   //   const deleteThisProduct = (e) => {
   //     dispatch(deleteProduct(e));
   //     alert("Product deleted");
@@ -43,9 +47,6 @@ const Product = () => {
   };
 
   useEffect(() => {
-    if (productId && productId !== "") {
-      fetchProductDetail(productId);
-    }
     if (deleteError) {
       alert(deleteError);
       dispatch(clearErrors());
@@ -56,6 +57,7 @@ const Product = () => {
       navigate("/admin/dashboard");
       dispatch({ type: ActionTypes.DELETE_PRODUCT_RESET });
     }
+    dispatch(getProductDetails(productId));
   }, [dispatch, alert, deleteError, isDeleted, productId]);
 
   //   useEffect(() => {

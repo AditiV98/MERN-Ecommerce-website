@@ -59,7 +59,7 @@ const MyOrder = () => {
                     <TableCell align="left">
                       {" "}
                       <Link
-                        to={"/"}
+                        to={`/order/${product._id}`}
                         // to={`/admin/product/${product._id}`}
                         // style={{ textDecoration: "none", color: "black" }}
                       >

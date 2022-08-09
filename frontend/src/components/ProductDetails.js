@@ -4,38 +4,41 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../actions/cartAction";
-import {
-  selectedProduct,
-  removeSelectedProduct,
-} from "../actions/productAction";
+import { addToWishlist } from "../actions/wishlistAction";
+
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { clearErrors, getProductDetails } from "../actions/productAction";
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  let product = useSelector((state) => state.ProductDetails);
+  const { wishList } = useSelector((state) => state.wishlist);
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetails
+  );
+
   const { _id, image, title, price, category, description } = product;
   const dispatch = useDispatch();
-  const fetchProductDetail = async (_id) => {
-    const response = await axios.get(`/api/product/${_id}`).catch((err) => {
-      console.log("Err: ", err);
-    });
-    dispatch(selectedProduct(response.data));
+  const favourite = (e) => {
+    dispatch(addToWishlist(e));
+    alert("Product added to wishlist");
+    navigate("/products");
   };
   const send = (e) => {
     dispatch(addToCart(e));
     alert("Product added to cart");
-    // navigate("/cart");
+    navigate("/products");
   };
   useEffect(() => {
-    if (productId && productId !== "") fetchProductDetail(productId);
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
 
-    // return () => {
-    //   dispatch(removeSelectedProduct());
-    // };
-  }, [productId]);
+    dispatch(getProductDetails(productId));
+  }, [dispatch, alert, error]);
   return (
     <>
       <br></br>
@@ -62,11 +65,17 @@ const ProductDetails = () => {
                   </h2>
                   <h3 className="ui brown block header">{category}</h3>
                   <p>{description}</p>
-                  {/* <div className="ui vertical animated button" tabIndex="0">
-                    <div className="hidden content">
-                      <i className="shop icon"></i>
-                    </div> */}
-                  {/* <div className="visible content">Add to Cart</div> */}
+                  {isAuthenticated && user.role === "user" ? (
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => favourite(product)}
+                    >
+                      Wishlist
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
                   {isAuthenticated && user.role === "user" ? (
                     <Button variant="contained" onClick={() => send(product)}>
                       Add to cart
@@ -74,7 +83,6 @@ const ProductDetails = () => {
                   ) : (
                     <></>
                   )}
-                  {/* </div> */}
                 </div>
               </div>
             </div>

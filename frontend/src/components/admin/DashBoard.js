@@ -9,6 +9,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../actions/userAction.js";
 import { getProduct } from "../../actions/productAction";
+import { getAllOrders } from "../../actions/orderAction.js";
 import axios from "axios";
 import "./DashBoard.css";
 const DashBoard = () => {
@@ -22,7 +23,7 @@ const DashBoard = () => {
 
   const { products } = useSelector((state) => state.Products);
 
-  // const { orders } = useSelector((state) => state.allOrders);
+  const { orders } = useSelector((state) => state.allOrders);
 
   const { users } = useSelector((state) => state.allUsers);
 
@@ -30,7 +31,7 @@ const DashBoard = () => {
     dispatch(getProduct());
     // fetchProducts();
     // dispatch(setProducts());
-    // dispatch(getAllOrders());
+    dispatch(getAllOrders());
     dispatch(getAllUsers());
   }, [dispatch]);
 
@@ -91,7 +92,7 @@ const DashBoard = () => {
           </Link> */}
         </Grid>
         <Grid container item xs={10}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <center>
               <div className="dashboardSummaryBox2">
                 <Link
@@ -104,11 +105,24 @@ const DashBoard = () => {
               </div>
             </center>
           </Grid>
+          <Grid item xs={4}>
+            <center>
+              <div className="dashboardSummaryBox2">
+                <Link
+                  to="/admin/All-orders"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <p>Orders</p>
+                  <p>{orders && orders.length}</p>
+                </Link>
+              </div>
+            </center>
+          </Grid>
           {/* <Link to="/admin/orders">
               <p>Orders</p>
               <p>{orders && orders.length}</p>
             </Link> */}
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <center>
               <div className="dashboardSummaryBox2">
                 <Link

@@ -118,3 +118,36 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+// update Order Status -- Admin
+exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
+  let order = await Order.findById(req.params.id);
+
+  if (!order) {
+    return next(new ErrorHander("Order not found with this Id", 404));
+  }
+
+  if (order.orderStatus === "Delivered") {
+    return next(new ErrorHander("You have already delivered this order", 400));
+  }
+
+  // if (req.body.status === "Shipped") {
+  //   order.orderItems.forEach(async (o) => {
+  //     await updateStock(o.product, o.quantity);
+  //   });
+  // }
+  const newProductData = {
+    orderStatus: req.body.orderStatus,
+  };
+
+  order = await Order.findByIdAndUpdate(req.params.id, newProductData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    order,
+  });
+});

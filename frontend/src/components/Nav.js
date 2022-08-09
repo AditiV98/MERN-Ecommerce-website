@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import UserOptions from "./UserOptions";
 import { useMediaQuery, useTheme } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import DrawerComp from "./Drawer";
 import { logout } from "../actions/userAction";
 import { useNavigate } from "react-router-dom";
@@ -128,6 +129,25 @@ export default function Header() {
               {isAuthenticated && user.role === "user" ? (
                 <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
                   <Link
+                    to="/wishlist"
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    <IconButton
+                      size="large"
+                      aria-label="search"
+                      color="inherit"
+                    >
+                      <FavoriteIcon />
+                    </IconButton>
+                  </Link>
+                </Typography>
+              ) : (
+                <></>
+              )}
+
+              {isAuthenticated && user.role === "user" ? (
+                <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
+                  <Link
                     to="cart"
                     style={{ textDecoration: "none", color: "white" }}
                   >
@@ -141,18 +161,9 @@ export default function Header() {
                   </Link>
                 </Typography>
               ) : (
-                <>{/* <h1>Please login</h1> */}</>
+                <></>
               )}
-              {/* <Typography variant="h6" component="div" sx={{ flexGrow: 0.5 }}>
-            <Link
-              to="search"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <IconButton size="large" aria-label="search" color="inherit">
-                <SearchIcon />
-              </IconButton>
-            </Link>
-          </Typography> */}
+
               {isAuthenticated ? (
                 <>
                   {" "}
@@ -193,7 +204,6 @@ export default function Header() {
               )}
             </>
           )}
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </Box>
