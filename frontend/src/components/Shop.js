@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useMemo } from "react";
+import React, { useEffect, useCallback, useMemo, Fragment } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct, clearErrors } from "../actions/productAction";
@@ -53,23 +53,31 @@ const Shop = () => {
     //   </div>
     // </>
     <>
-      <br></br>
-      <Container>
-        <center>
-          <h1>ALL PRODUCTS</h1>
+      <Fragment>
+        {loading ? (
+          <h1>Loading</h1>
+        ) : (
+          <Fragment>
+            <br></br>
+            <Container>
+              <center>
+                <h1>ALL PRODUCTS</h1>
 
-          <hr></hr>
-          <Search />
-          <hr></hr>
-        </center>
-        <br></br>
-        <Box sx={{ flexGrow: 1 }}>
-          <br></br>
-          <Grid container spacing={6}>
-            <ProductComponent />
-          </Grid>
-        </Box>
-      </Container>
+                <hr></hr>
+                <Search />
+                <hr></hr>
+              </center>
+              <br></br>
+              <Box sx={{ flexGrow: 1 }}>
+                <br></br>
+                <Grid container spacing={6}>
+                  <ProductComponent />
+                </Grid>
+              </Box>
+            </Container>
+          </Fragment>
+        )}
+      </Fragment>
     </>
   );
 };
