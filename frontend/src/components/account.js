@@ -8,16 +8,9 @@ import { red } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 
 const Account = () => {
-  // const dispatch = useDispatch();
+  
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-  // const { _id, name, email, password, role } = user;
-
-  // const fetchProductDetail = async (_id) => {
-  //   const response = await axios.get(`/api/me/${_id}`).catch((err) => {
-  //     console.log("Err: ", err);
-  //   });
-  //   dispatch(loadUser(response.data));
-  // };
+  
   return (
     <Fragment>
       <Container maxWidth="sm">

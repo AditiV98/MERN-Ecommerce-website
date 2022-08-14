@@ -33,19 +33,12 @@ const Contact = () => {
         <div className="sendMsg">
           <h4>Send Us A Message</h4>
           <div className="inputContact">
-            {/* <InputGroup width="450px">
-              <InputLeftElement
-                pointerEvents="none"
-                children={<EmailIcon className="envolope" color="gray.300" />}
-              /> */}
-
             <TextField
               value={email}
               onChange={(e) => setemail(e.target.value)}
               type="text"
               placeholder="Your Email Address"
             />
-            {/* </InputGroup> */}
           </div>
           <div className="textAreaCnt">
             <TextField
@@ -71,9 +64,7 @@ const Contact = () => {
         </div>
         <div className="showAdrss">
           <div className="box">
-            <div className="iconCtn">
-              {/* <GiPositionMarker opacity="0.8" /> */}
-            </div>
+            <div className="iconCtn"></div>
             <div className="adressCtn">
               <h3> Address</h3>
               <p>
@@ -83,31 +74,19 @@ const Contact = () => {
             </div>
           </div>
           <div className="box">
-            <div className="iconCtn">
-              {/* <HiOutlinePhone opacity="0.8" /> */}
-            </div>
+            <div className="iconCtn"></div>
             <div className="adressCtn">
               <h3>Lets Talk</h3>
               <p className="infoCtn">0657964665</p>
             </div>
           </div>
           <div className="box">
-            <div className="iconCtn">{/* <EmailIcon opacity="0.8" /> */}</div>
+            <div className="iconCtn"></div>
             <div className="adressCtn">
               <h3>Sale Support</h3>
               <p className="infoCtn">Store@gmail.com</p>
             </div>
           </div>
-          {/* <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <EmailIcon opacity="0.8" />
-              </Grid>
-              <Grid item xs={10}>
-                <h3>Sale Support</h3>
-              </Grid>
-            </Grid>
-          </Box> */}
         </div>
       </div>
     </div>

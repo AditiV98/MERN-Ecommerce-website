@@ -11,16 +11,15 @@ import CardContent from "@mui/material/CardContent";
 import { Link } from "react-router-dom";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import "./Cart.css";
-// import { addToCart } from "../redux/actions/productsActions";
+
 
 const Cart = () => {
   const [price, setPrice] = useState(0);
   const [totItem, setTotItem] = useState(0);
-  // console.log(price);
-  // const dispatch = useDispatch();
+  
   const { cartItems } = useSelector((state) => state.cart);
   const getData = useSelector((state) => state.cart.cartItems);
-  // console.log(getData);
+  
   const totalI = () => {
     let totItem = 0;
     getData.map((e) => {

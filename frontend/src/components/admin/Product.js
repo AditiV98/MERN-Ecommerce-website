@@ -26,18 +26,6 @@ const Product = () => {
 
   const navigate = useNavigate();
 
-  // const fetchProductDetail = async (_id) => {
-  //   const response = await axios.get(`/api/product/${_id}`).catch((err) => {
-  //     console.log("Err: ", err);
-  //   });
-  //   dispatch(selectedProduct(response.data));
-  // };
-  //   const deleteThisProduct = (e) => {
-  //     dispatch(deleteProduct(e));
-  //     alert("Product deleted");
-  //     // navigate("/cart");
-  //   };
-
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.product
   );
@@ -60,13 +48,6 @@ const Product = () => {
     dispatch(getProductDetails(productId));
   }, [dispatch, alert, deleteError, isDeleted, productId]);
 
-  //   useEffect(() => {
-  //     if (productId && productId !== "") fetchProductDetail(productId);
-
-  //     // return () => {
-  //     //   dispatch(removeSelectedProduct());
-  //     // };
-  //   }, [productId]);
   return (
     <>
       <br></br>
@@ -93,11 +74,7 @@ const Product = () => {
                   </h2>
                   <h3 className="ui brown block header">{category}</h3>
                   <p>{description}</p>
-                  {/* <div className="ui vertical animated button" tabIndex="0">
-                    <div className="hidden content">
-                      <i className="shop icon"></i>
-                    </div> */}
-                  {/* <div className="visible content">Add to Cart</div> */}
+
                   <Link
                     to={`/admin/${_id}/update-product`}
                     style={{ textDecoration: "none", color: "white" }}
@@ -111,7 +88,6 @@ const Product = () => {
                   >
                     Delete Product
                   </Button>
-                  {/* </div> */}
                 </div>
               </div>
             </div>

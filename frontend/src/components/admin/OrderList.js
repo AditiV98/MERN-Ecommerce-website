@@ -12,36 +12,18 @@ import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
-import {
-  // deleteOrder,
-  getAllOrders,
-  clearErrors,
-} from "../../actions/orderAction";
-// import { DELETE_ORDER_RESET } from "../../constants/orderConstants";
+import { getAllOrders, clearErrors } from "../../actions/orderAction";
+
 const OrderList = () => {
   const dispatch = useDispatch();
 
   const { error, orders, loading } = useSelector((state) => state.allOrders);
-  // const { error: deleteError, isDeleted } = useSelector((state) => state.order);
 
-  // const deleteOrderHandler = (id) => {
-  //   dispatch(deleteOrder(id));
-  // };
   useEffect(() => {
     if (error) {
       alert(error);
       dispatch(clearErrors());
     }
-    // if (deleteError) {
-    //   alert(deleteError);
-    //   dispatch(clearErrors());
-    // }
-
-    // if (isDeleted) {
-    //   alert("Order Deleted Successfully");
-    //   // history.push("/admin/orders");
-    //   dispatch({ type: DELETE_ORDER_RESET });
-    // }
 
     dispatch(getAllOrders());
   }, [dispatch, alert, error]);
@@ -82,10 +64,6 @@ const OrderList = () => {
                         {" "}
                         Update Status
                       </TableCell>
-                      {/* <TableCell style={{ fontSize: "15pt" }}>
-                        {" "}
-                        Delete
-                      </TableCell> */}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -123,17 +101,6 @@ const OrderList = () => {
                               </Button>
                             </Link>
                           </TableCell>
-                          {/* <TableCell align="left">
-                            {" "}
-                            <Button
-                              color="error"
-                              size="small"
-                              variant="contained"
-                              onClick={() => deleteOrderHandler(product._id)}
-                            >
-                              Delete
-                            </Button>
-                          </TableCell> */}
                         </TableRow>
                       ))}
                   </TableBody>

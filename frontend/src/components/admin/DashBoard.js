@@ -14,12 +14,7 @@ import axios from "axios";
 import "./DashBoard.css";
 const DashBoard = () => {
   const dispatch = useDispatch();
-  // const fetchProducts = async () => {
-  //   const response = await axios.get("/api/products").catch((err) => {
-  //     console.log("Err: ", err);
-  //   });
-  //   dispatch(setProducts(response.data));
-  // };
+  
 
   const { products } = useSelector((state) => state.Products);
 
@@ -29,8 +24,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     dispatch(getProduct());
-    // fetchProducts();
-    // dispatch(setProducts());
+   
     dispatch(getAllOrders());
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -42,7 +36,7 @@ const DashBoard = () => {
       <Grid
         container
         spacing={2}
-        // style={{ border: "1px solid black" }}
+        
         height="500px"
       >
         <Grid item xs={2} style={{ background: "#f8bbd0" }}>
@@ -82,14 +76,7 @@ const DashBoard = () => {
             </h2>
           </Link>
           <br></br>
-          {/* <Link
-            to="/admin/users"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <h2>
-              <PersonAddIcon /> Add Users
-            </h2>
-          </Link> */}
+         
         </Grid>
         <Grid container item xs={10}>
           <Grid item xs={4}>
@@ -118,10 +105,7 @@ const DashBoard = () => {
               </div>
             </center>
           </Grid>
-          {/* <Link to="/admin/orders">
-              <p>Orders</p>
-              <p>{orders && orders.length}</p>
-            </Link> */}
+        
           <Grid item xs={4}>
             <center>
               <div className="dashboardSummaryBox2">

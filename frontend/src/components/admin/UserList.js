@@ -43,7 +43,7 @@ const UserList = () => {
 
     if (isDeleted) {
       alert("user deleted successfully");
-      //   history.push("/admin/users");
+
       dispatch({ type: DELETE_USER_RESET });
     }
 
@@ -56,12 +56,7 @@ const UserList = () => {
         <h1>ALL USERS</h1>
       </center>
       <hr></hr>
-      <Container
-      // maxWidth="sm"
-      // sx={{
-      //   border: "1px solid black",
-      // }}
-      >
+      <Container>
         <TableContainer>
           <Table sx={{ minWidth: 600 }} aria-label="simple table">
             <TableHead style={{ background: "#f8bbd0" }}>
@@ -79,27 +74,11 @@ const UserList = () => {
                   <TableCell align="left">{index + 1}</TableCell>
                   <TableCell align="left">
                     {" "}
-                    <Link
-                      to={`/admin/user/${user._id}`}
-                      // style={{ textDecoration: "none", color: "black" }}
-                    >
-                      {user._id}
-                    </Link>
+                    <Link to={`/admin/user/${user._id}`}>{user._id}</Link>
                   </TableCell>
                   <TableCell align="left">{user.name}</TableCell>
                   <TableCell align="left">{user.email}</TableCell>
                   <TableCell align="left">{user.role}</TableCell>
-                  {/* <TableCell align="left">
-                  {" "}
-                  <Button
-                    color="error"
-                    size="small"
-                    variant="contained"
-                    onClick={() => deleteTask(player.id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

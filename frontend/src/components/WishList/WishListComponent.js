@@ -32,14 +32,7 @@ const WishListComponent = () => {
   const send = (e) => {
     dispatch(addToCart(e));
     alert("Product added to cart");
-    // navigate("/products");
   };
-  // const rmvOne = (e) => {
-  //   dispatch(removeOne(e));
-  // };
-  // const send = (e) => {
-  //   dispatch(addToWishlist(e));
-  // };
 
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const renderList =
@@ -48,7 +41,6 @@ const WishListComponent = () => {
       const { _id, title, image, price, category } = product;
       return (
         <ProductGrid>
-          {/* <Link to={`/product/${_id}`}> */}
           <ProductCard className="productResponsive">
             <div>
               <img src={image} alt={title} width="250" height="250" />
@@ -79,7 +71,6 @@ const WishListComponent = () => {
               </Button>
             </CardActions>
           </ProductCard>
-          {/* </Link> */}
         </ProductGrid>
       );
     });

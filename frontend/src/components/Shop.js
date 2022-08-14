@@ -10,12 +10,9 @@ import Search from "./Search";
 import { useParams } from "react-router-dom";
 const Shop = () => {
   const { keyword } = useParams();
-  // const products = useSelector((state) => state.allProducts.products);
-  const dispatch = useDispatch();
-  // const [price, setPrice] = useState([0, 25000]);
-  // const [category, setCategory] = useState("");
 
-  // const [ratings, setRatings] = useState(0);
+  const dispatch = useDispatch();
+
   const {
     products,
     loading,
@@ -33,25 +30,7 @@ const Shop = () => {
     dispatch(getProduct(keyword));
   }, [dispatch, keyword, alert, error]);
 
-  // const fetchProducts = async () => {
-  //   const response = await axios.get("/api/products").catch((err) => {
-  //     console.log("Err: ", err);
-  //   });
-  //   dispatch(setProducts(response.data));
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
-
-  // console.log("Products :", products);
   return (
-    // <>
-    //   <br></br>
-    //   <div className="ui grid container">
-    //     <ProductComponent />{" "}
-    //   </div>
-    // </>
     <>
       <Fragment>
         {loading ? (

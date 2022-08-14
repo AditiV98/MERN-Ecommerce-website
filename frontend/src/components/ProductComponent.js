@@ -16,33 +16,10 @@ const ProductComponent = () => {
     products.map((product) => {
       const { _id, title, image, price, category } = product;
       return (
-        // <div className="four wide column" key={id}>
-        //   <Link to={`/product/${id}`}>
-        //     <div className="ui link cards">
-        //       <div className="card">
-        //         <div className="image">
-        //           <img src={image} alt={title} />
-        //         </div>
-        //         <div className="content">
-        //           <div className="header">{title}</div>
-        //           <div className="meta price">$ {price}</div>
-        //           <div className="meta">{category}</div>
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </Link>
-        // </div>
         <Grid item xs={3} key={_id}>
           <Link to={`/product/${_id}`}>
             <Card sx={{ height: "380px" }}>
               <div>
-                {/* <CardMedia
-                component="img"
-                image={image}
-                alt={title}
-                sx={{ display: "flex" }}
-               
-              /> */}
                 <img src={image} alt={title} width="250" height="250" />
               </div>
               <CardContent>
@@ -53,10 +30,6 @@ const ProductComponent = () => {
                 <Typography variant="body2">₹{price}</Typography>
                 <Typography variant="body2">{category}</Typography>
               </CardContent>
-              {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
             </Card>
           </Link>
         </Grid>

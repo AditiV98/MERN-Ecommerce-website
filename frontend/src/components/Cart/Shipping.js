@@ -23,10 +23,7 @@ const Shipping = () => {
   };
   const shippinghandler = async (e) => {
     e.preventDefault();
-    // if (phoneNo.length < 10 || phoneNo.length > 10) {
-    //   alert("Phone Number should be 10 digits Long");
-    //   return;
-    // }
+
     dispatch(saveShippingInfo(shippingDetails));
     alert("saved");
     navigate("/order/confirm");
@@ -91,8 +88,6 @@ const Shipping = () => {
           />
           <div className="row">
             <button type="submit">Submit</button>
-
-            {/* <Link to="/login">Login</Link> */}
           </div>
         </form>
       </div>

@@ -1,4 +1,3 @@
-// import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Nav";
 import Home from "./Home/Home";
@@ -56,7 +55,7 @@ function MyApp() {
     <div>
       <BrowserRouter>
         <Header></Header>
-        {/* {isAuthenticated && <UserOptions user={user} />} */}
+
         {stripeApiKey && (
           <Elements stripe={loadStripe(stripeApiKey)}>
             {isAuthenticated && user.role === "user" && (

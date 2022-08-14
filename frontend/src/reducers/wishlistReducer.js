@@ -30,31 +30,6 @@ export const wishlistReducer = (state = INIT_STATE, { type, payload }) => {
         ...state,
         wishList: state.wishList.filter((item) => item._id !== payload._id),
       };
-    // //decrease quantity
-    // case ActionTypes.REMOVE_ONE:
-    //   const itemIndex_dec = state.cartItems.findIndex(
-    //     (item) => item._id === payload._id
-    //   );
-
-    //   if (state.cartItems[itemIndex_dec].qnty >= 1) {
-    //     const dltItems = (state.cartItems[itemIndex_dec].qnty -= 1);
-
-    //     return {
-    //       ...state,
-    //       cartItems: [...state.cartItems],
-    //     };
-    //   } else if (state.cartItems[itemIndex_dec].qnty === 1) {
-    //     return {
-    //       ...state,
-    //       cartItems: state.cartItems.filter((item) => item._id !== payload._id),
-    //     };
-    //   }
-
-    //   case ActionTypes.SAVE_SHIPPING_INFO:
-    //     return {
-    //       ...state,
-    //       shippingInfo: payload,
-    //     };
 
     default:
       return state;

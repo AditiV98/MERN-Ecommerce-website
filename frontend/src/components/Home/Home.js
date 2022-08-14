@@ -1,17 +1,13 @@
-// import React from "react";
-// import { Button } from "@mui/material";
-// import { Link } from "react-router-dom";
-// import "./Home.css";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper, Button } from "@mui/material";
 import Item from "./Item";
-// import img from "./images/banner.jpg";
+
 const Home = () => {
   var items = [
     {
       name: "Random Name #1",
-      // image: img,
+
       image:
         "https://img.freepik.com/free-vector/horizontal-sale-banner-template_23-2148897328.jpg?w=1060&t=st=1659187166~exp=1659187766~hmac=55378854e4b4c3ef568910d18bbe50cc378f85a7ca45490256fa1276b86a6079",
       description: "Probably the most random thing you have ever seen!",
@@ -36,15 +32,6 @@ const Home = () => {
     },
   ];
   return (
-    // <div id="banner_image">
-    //   <div id="banner_content">
-    //     <Link to="/shop" style={{ textDecoration: "none", color: "white" }}>
-    //       <Button variant="contained" size="large" color="error">
-    //         Shop Now
-    //       </Button>
-    //     </Link>
-    //   </div>
-    // </div>
     <Carousel>
       {items.map((item, i) => (
         <Item key={i} item={item} />

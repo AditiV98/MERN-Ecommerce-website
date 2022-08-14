@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import "./login.css";
 const UpdateProfile = () => {
   const dispatch = useDispatch();
-  // const alert = useAlert();
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);

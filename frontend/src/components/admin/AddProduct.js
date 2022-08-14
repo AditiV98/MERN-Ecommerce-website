@@ -93,7 +93,6 @@ const AddProduct = () => {
 
         <div className="row">
           <button type="submit">Add</button>
-          {/* <Link to="/login">Login</Link> */}
         </div>
       </form>
     </div>

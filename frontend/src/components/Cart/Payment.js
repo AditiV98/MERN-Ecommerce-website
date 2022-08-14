@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect, useRef } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
-// import MetaData from "../layout/MetaData";
+
 import Typography from "@mui/material/Typography";
-// import { useAlert } from "react-alert";
+
 import {
   CardNumberElement,
   CardCvcElement,
@@ -14,9 +14,6 @@ import {
 import { createOrder, clearErrors } from "../../actions/orderAction";
 import axios from "axios";
 import "./payment.css";
-// import CreditCardIcon from "@material-ui/icons/CreditCard";
-// import EventIcon from "@material-ui/icons/Event";
-// import VpnKeyIcon from "@material-ui/icons/VpnKey";
 
 import { useNavigate } from "react-router-dom";
 const Payment = () => {
@@ -118,15 +115,12 @@ const Payment = () => {
         <form className="paymentForm" onSubmit={(e) => submitHandler(e)}>
           <Typography>Card Info</Typography>
           <div>
-            {/* <CreditCardIcon /> */}
             <CardNumberElement className="paymentInput" />
           </div>
           <div>
-            {/* <EventIcon /> */}
             <CardExpiryElement className="paymentInput" />
           </div>
           <div>
-            {/* <VpnKeyIcon /> */}
             <CardCvcElement className="paymentInput" />
           </div>
 

@@ -16,16 +16,7 @@ import { useParams } from "react-router-dom";
 const ProductList = () => {
   const { keyword } = useParams();
   const dispatch = useDispatch();
-  // const fetchProducts = async () => {
-  //   const response = await axios.get("/api/products").catch((err) => {
-  //     console.log("Err: ", err);
-  //   });
-  //   dispatch(setProducts(response.data));
-  // };
 
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
   const {
     products,
     loading,
@@ -49,12 +40,7 @@ const ProductList = () => {
         <h1>ALL PRODUCTS</h1>
       </center>
       <hr></hr>
-      <Container
-      // maxWidth="sm"
-      // sx={{
-      //   border: "1px solid black",
-      // }}
-      >
+      <Container>
         <TableContainer>
           <Table sx={{ minWidth: 600 }} aria-label="simple table">
             <TableHead style={{ background: "#f8bbd0" }}>
@@ -73,27 +59,13 @@ const ProductList = () => {
                     <TableCell align="left">{index + 1}</TableCell>
                     <TableCell align="left">
                       {" "}
-                      <Link
-                        to={`/admin/product/${product._id}`}
-                        // style={{ textDecoration: "none", color: "black" }}
-                      >
+                      <Link to={`/admin/product/${product._id}`}>
                         {product._id}
                       </Link>
                     </TableCell>
                     <TableCell align="left">{product.title}</TableCell>
                     <TableCell align="left">{product.price}</TableCell>
                     <TableCell align="left">{product.category}</TableCell>
-                    {/* <TableCell align="left">
-                    {" "}
-                    <Button
-                      color="error"
-                      size="small"
-                      variant="contained"
-                      onClick={() => deleteTask(player.id)}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

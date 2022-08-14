@@ -33,12 +33,7 @@ const MyOrder = () => {
         <h1>MY ORDERS</h1>
       </center>
       <hr></hr>
-      <Container
-      // maxWidth="sm"
-      // sx={{
-      //   border: "1px solid black",
-      // }}
-      >
+      <Container>
         <TableContainer>
           <Table sx={{ minWidth: 600 }} aria-label="simple table">
             <TableHead style={{ background: "#f8bbd0" }}>
@@ -53,35 +48,17 @@ const MyOrder = () => {
             <TableBody>
               {orders &&
                 orders.map((product, index) => (
-                  // const itemQnty = product.orderitems.length;
                   <TableRow key={product._id}>
                     <TableCell align="left">{index + 1}</TableCell>
                     <TableCell align="left">
                       {" "}
-                      <Link
-                        to={`/order/${product._id}`}
-                        // to={`/admin/product/${product._id}`}
-                        // style={{ textDecoration: "none", color: "black" }}
-                      >
-                        {product._id}
-                      </Link>
+                      <Link to={`/order/${product._id}`}>{product._id}</Link>
                     </TableCell>
                     <TableCell align="left">{product.orderStatus}</TableCell>
                     <TableCell align="left">
                       {product.orderItems.length}
                     </TableCell>
                     <TableCell align="left">{product.totalPrice}</TableCell>
-                    {/* <TableCell align="left">
-                    {" "}
-                    <Button
-                      color="error"
-                      size="small"
-                      variant="contained"
-                      onClick={() => deleteTask(player.id)}
-                    >
-                      Delete
-                    </Button>
-                  </TableCell> */}
                   </TableRow>
                 ))}
             </TableBody>

@@ -15,7 +15,7 @@ import "./login.css";
 
 const UpdatePassword = () => {
   const dispatch = useDispatch();
-  // const alert = useAlert();
+
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
@@ -32,15 +32,11 @@ const UpdatePassword = () => {
   };
   const updatePasswordForm = async (e) => {
     e.preventDefault();
-    // try {
+
     dispatch(updatePassword(password));
-    // } catch (err) {
-    //   alert("invalid");
-    // }
   };
   useEffect(() => {
     if (error) {
-      // console.log(error);
       alert(error);
       dispatch(clearErrors());
     }

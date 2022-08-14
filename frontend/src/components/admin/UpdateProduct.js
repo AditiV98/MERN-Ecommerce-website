@@ -9,7 +9,7 @@ const UpdateProduct = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   let { error, product } = useSelector((state) => state.productDetails);
-  // const { _id, image, title, price, category, description } = product;
+
   const {
     loading,
     error: updateError,
@@ -30,19 +30,6 @@ const UpdateProduct = () => {
   };
 
   useEffect(() => {
-    // if (product && product._id !== productId) {
-    //   dispatch(getProductDetails(productId));
-    // } else {
-    //   setName(product.name);
-    //   setDescription(product.description);
-    //   setPrice(product.price);
-    //   setCategory(product.category);
-    //   setStock(product.Stock);
-    //   setOldImages(product.images);
-    // }
-    // if (productId && productId !== "") {
-    //   setUpdatedProduct(product);
-    // }
     if (error) {
       alert(error);
       dispatch(clearErrors());
@@ -55,7 +42,7 @@ const UpdateProduct = () => {
 
     if (isUpdated) {
       alert("Product Updated Successfully");
-      // history.push("/admin/products");
+
       dispatch({ type: ActionTypes.UPDATE_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, isUpdated, productId, product, updateError]);
@@ -117,7 +104,6 @@ const UpdateProduct = () => {
 
         <div className="row">
           <button type="submit">Update</button>
-          {/* <Link to="/login">Login</Link> */}
         </div>
       </form>
     </div>

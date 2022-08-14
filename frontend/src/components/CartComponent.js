@@ -13,20 +13,17 @@ const CartComponent = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const remove = (e) => {
-    // console.log(e);
     dispatch(removeFromCart(e));
   };
   const rmvOne = (e) => {
     dispatch(removeOne(e));
   };
   const send = (e) => {
-    // console.log(e);
     dispatch(addToCart(e));
   };
   const renderList =
     cartItems &&
     cartItems.map((item) => {
-      // const { _id, title, image, price, category, qnty } = item;
       return (
         <>
           <div key={item.product}>
@@ -79,7 +76,6 @@ const CartComponent = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              {/* <Grid item xs={6} md={8}></Grid> */}
             </Grid>
           </div>
           <br></br>

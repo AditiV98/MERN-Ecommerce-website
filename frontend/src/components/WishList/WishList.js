@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback, useMemo } from "react";
 import WishListComponent from "./WishListComponent";
 import { useDispatch, useSelector } from "react-redux";
-// import { getProduct, clearErrors } from "../actions/productAction";
-// import ProductComponent from "./ProductComponent";
+
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-// import Search from "./Search";
+
 import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 
@@ -35,7 +34,7 @@ const WishList = () => {
           <h1>ALL PRODUCTS</h1>
 
           <hr></hr>
-          {/* <Search /> */}
+          
           <hr></hr>
         </center>
         <br></br>
