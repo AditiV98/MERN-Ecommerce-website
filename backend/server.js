@@ -20,7 +20,7 @@ const connectDatabase = require("./config/database");
 // });
 
 // Config
-dotenv.config({ path: "backend/config/config.env" });
+dotenv.config({ path: "backend/config.env" });
 
 // Connecting to database
 connectDatabase();

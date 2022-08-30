@@ -8,7 +8,7 @@ const dotenv = require("dotenv");
 const errorMiddleware = require("./middleware/error");
 
 // Config
-dotenv.config({ path: "backend/config/config.env" });
+dotenv.config({ path: "backend/config.env" });
 
 app.use(express.json());
 app.use(cookieParser());
