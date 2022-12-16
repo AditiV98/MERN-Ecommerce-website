@@ -9,7 +9,7 @@ for payments Stripe Api is used.
 
 
 
-# ScreenShots
+
 ## User Dashboard
 ![Screenshot (191)](https://user-images.githubusercontent.com/64195326/181919108-fb9660b9-76f0-4bd0-9e07-ecf3eb89a57a.png)
 ![Screenshot (192)](https://user-images.githubusercontent.com/64195326/181919161-6fe04551-528c-43b0-a479-d7e367e16a79.png)
